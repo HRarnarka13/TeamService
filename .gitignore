@@ -1,0 +1,8 @@
+target
+/.idea
+/.idea_modules
+/.classpath
+/.progject
+/.settings
+
+.DS_Store
