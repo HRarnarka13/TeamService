@@ -29,7 +29,7 @@ public class GameRowMapper implements RowMapper<Game> {
 
         Game game = new Game();
         game.setGameId(rs.getInt("gameid"));
-        game.setStartTime(rs.getTime("startTime"));
+        game.setStartTime(rs.getTimestamp("startTime"));
         game.setTeamHome(teamDataGateway.getTeam(rs.getInt("teamHomeid")));
         game.setTeamAway(teamDataGateway.getTeam(rs.getInt("teamAwayid")));
         game.setVenue(venueDataGateway.getVenue(rs.getInt("venueid")));
