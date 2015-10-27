@@ -3,11 +3,13 @@ package is.rufan.team.data;
 import is.rufan.team.domain.Game;
 import is.rufan.team.service.GameServiceException;
 import is.ruframework.data.RuData;
+import is.ruframework.domain.RuException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -39,10 +41,26 @@ public class GameData extends RuData implements GameDataGateway {
 
     public Game getGame(int gameId) {
 
-        String sql = "select * from games where id = ?";
+        String sql = "select * from games where gameid = ?";
         JdbcTemplate queryTeam = new JdbcTemplate(getDataSource());
-        Game game = queryTeam.queryForObject(sql, new Object[] { gameId },
-                new GameRowMapper());
+        Game game = null;
+        try {
+            game = queryTeam.queryForObject(sql, new Object[] { gameId }, new GameRowMapper());
+        } catch (RuException ex) {
+            return null;
+        }
         return game;
+    }
+
+    public List<Game> getGames() {
+        String sql = "select * from games";
+        JdbcTemplate queryGames= new JdbcTemplate(getDataSource());
+        try {
+            List<Game> games = queryGames.query(sql,
+                new GameRowMapper());
+            return games;
+        } catch (RuException ex) {
+            return null;
+        }
     }
 }

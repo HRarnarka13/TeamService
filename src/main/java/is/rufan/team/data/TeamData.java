@@ -39,7 +39,7 @@ public class TeamData extends RuData implements TeamDataGateway
 
   public Team getTeam(int teamId)
   {
-    String sql = "select * from teams where id = ?";
+    String sql = "select * from teams where teamid = ?";
     JdbcTemplate queryTeam= new JdbcTemplate(getDataSource());
     Team team = queryTeam.queryForObject(sql, new Object[] { teamId },
         new TeamRowMapper());
