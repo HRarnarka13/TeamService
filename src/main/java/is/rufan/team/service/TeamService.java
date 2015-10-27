@@ -9,4 +9,5 @@ public interface TeamService
   public void addTeam(Team team) throws TeamServiceException;
   public List<Team> getTeams();
   public Team getTeamByAbbrivation(String abbrivation);
+  public Team getTeamById(int teamid);
 }

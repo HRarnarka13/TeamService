@@ -41,4 +41,9 @@ public class TeamServiceData implements TeamService
   {
     return teamDataGateway.getTeamByAbbreviation(abbrivation);
   }
+
+  public Team getTeamById(int teamid) {
+    Team team = teamDataGateway.getTeam(teamid);
+    return team;
+  }
 }
